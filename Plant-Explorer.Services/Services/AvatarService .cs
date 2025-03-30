@@ -72,10 +72,10 @@ namespace Plant_Explorer.Services.Services
             };
         }
 
-        public async Task<AvatarResponse> UpdateAvatarAsync(UpdateAvatarRequest request)
+        public async Task<AvatarResponse> UpdateAvatarAsync(Guid id, UpdateAvatarRequest request)
         {
             var repository = _unitOfWork.GetRepository<Avatar>();
-            var avatar = await repository.Entities.FirstOrDefaultAsync(a => a.Id == request.Id);
+            var avatar = await repository.Entities.FirstOrDefaultAsync(a => a.Id == id);
             if (avatar == null)
                 throw new Exception("Avatar not found");
 
