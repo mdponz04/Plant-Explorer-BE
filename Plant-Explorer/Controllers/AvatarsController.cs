@@ -57,9 +57,10 @@ namespace Plant_Explorer.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateAvatarRequest request)
+        [Route("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateAvatarRequest request)
         {
-            var avatar = await _avatarService.UpdateAvatarAsync(request);
+            var avatar = await _avatarService.UpdateAvatarAsync(id, request);
             return Ok(avatar);
         }
 
